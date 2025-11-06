@@ -1,0 +1,231 @@
+/* التنسيقات العامة */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* الشريط الجانبي */
+.sidebar {
+    width: 250px;
+    background-color: #0a1f1be2;
+    color: white;
+    padding: 20px 0;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.logo {
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #34495e;
+    margin-bottom: 20px;
+}
+
+.logo h2 {
+    font-size: 1.5rem;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0 15px;
+}
+
+.sidebar-menu li {
+    margin-bottom: 10px;
+}
+
+.sidebar-menu a {
+    display: block;
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 12px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+    background-color: #34495e;
+    color: #3498db;
+}
+
+.sidebar-menu i {
+    margin-left: 10px;
+}
+
+/* المحتوى الرئيسي */
+.main-content {
+    flex: 1;
+    margin-right: 250px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #24322f;
+}
+
+.header {
+    background-color: #0A1F1B;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    color: #c7b881;
+    margin-bottom: 10px;
+}
+
+.filter-box select {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: white;
+}
+
+/* جدول القضايا */
+.cases-table {
+    background-color: rgb(118, 162, 89);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    color: white;
+}
+
+.cases-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cases-table table thead {
+    background-color: #92D050;
+    color: white;
+    font: bold;
+}
+
+
+th,
+td {
+    padding: 15px;
+    text-align: right;
+    border-bottom: 1px solid #eee;
+}
+
+tbody tr:hover {
+    background-color: #b5d4a0;
+}
+
+.cases-table .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #92D050;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    position: relative;
+    overflow: hidden; 
+    border: 1px solid black;
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.status.pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status.in-progress {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.status.completed {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.priority {
+    font-weight: bold;
+}
+
+.priority.high {
+    color: #e74c3c;
+}
+
+.priority.medium {
+    color: #f39c12;
+}
+
+.priority.low {
+    color: #27ae60;
+}
+
+/* التذييل */
+.footer {
+    background-color: #0F1F1F;
+    color: rgba(255, 255, 255, 0.859);
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: auto;
+    /* هذا يدفع الفوتر لأسفل */
+    width: 100%;
+}
+
+.content-wrapper {
+    flex: 1;
+}
+
+/* التجاوب مع الشاشات المختلفة */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .main-content {
+        margin-right: 0;
+    }
+
+    .search-filter {
+        flex-direction: column;
+    }
+
+    .search-box {
+        margin-left: 0;
+        margin-bottom: 15px;
+    }
+}
