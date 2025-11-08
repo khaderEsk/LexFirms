@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('nameClient');
             $table->string('type');
             $table->string('executers');
-            $table->string('note');
             $table->string('subject')->nullable();
+            $table->integer('ratio');
+            $table->string('status');
             $table->timestamps();
         });
     }

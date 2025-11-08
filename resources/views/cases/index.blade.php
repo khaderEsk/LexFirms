@@ -2,25 +2,37 @@
 @section('title', 'الصفحة الرئيسية')
 @section('content')
     <div>
-        <!-- أزرار التبويبات -->
         <div class="tab-buttons">
             <h1>القضايا اليومية</h1>
         </div>
-
-        <!-- تبويب 1 -->
         <div id="tab1" class="tab-content active">
             <div class="grid" id="">
-                <div class="card">
-                    <h3>القضية #1234</h3>
-                    <p><strong>رقم الأساس:</strong> 2025/01</p>
-                    <p><strong>الموكل:</strong> محمد العتيبي</p>
-                    <p><strong>المحكة:</strong>الحريقة ط2</p>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 70%;"></div>
+                @foreach ($causes as $cause)
+                    <div class="card">
+                        <h3>القضية #{{ $cause->type }}</h3>
+                        <p>
+                            <strong>رقم الأساس:</strong>
+                            @if ($cause->type == "LS")
+                                2025/01
+                            @else
+                                _____
+                            @endif
+                        </p>
+                        <p><strong>الموكل:</strong>{{ $cause->nameClient }}</p>
+                        <p>
+                            <strong>المحكمة:</strong>
+                             @if ($cause->type == "LS")
+                                
+                            @else
+                                _____
+                            @endif
+                        </p>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 70%;"></div>
+                        </div>
+                        <div class="status-text">نسبة التقدم: 70%</div>
                     </div>
-                    <div class="status-text">نسبة التقدم: 70%</div>
-                </div>
-
+                @endforeach
                 <div class="card">
                     <h3>القضية #1235</h3>
                     <p><strong>رقم الأساس:</strong> 2025/02</p>
@@ -171,4 +183,3 @@
         }
     }
 </style>
-

@@ -10,7 +10,8 @@ class Cause extends Model
         'nameClient',
         'type',
         'executers',
-        'note',
         'subject',
+        'ratio',
+        'status',
     ];
 }

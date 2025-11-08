@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\CauseController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,9 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('cases', function () {
-    return view('cases.index');
-})->name('cases');
+
+Route::resource('causes', CauseController::class);
+// Route::g('cases',)->name('cases');
 
 Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login');
 

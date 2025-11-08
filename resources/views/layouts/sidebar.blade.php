@@ -7,8 +7,7 @@
     </div>
 
     <ul>
-        <li><a href="#">لوحة التحكم</a></li>
-        <li><a href="{{route('cases')}}"class="active">القضايا</a></li>
+        <li><a href=""class="active">القضايا</a></li>
         <li><a href="#">الموكلون</a></li>
         <li><a href="#">الجلسات</a></li>
         <li><a href="#">التقارير</a></li>
