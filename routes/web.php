@@ -22,9 +22,27 @@ Route::get('/', function () {
 });
 
 
-Route::resource('causes', CauseController::class);
+// Route::resource('ca,dk;uses', CauseController::class);
 // Route::g('cases',)->name('cases');
 
 Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login');
+
+Route::get('/causes-day', function () {
+    return view('cases.causeDay');
+})->name('causeDay');
+
+
+
+Route::get('/causes', [CauseController::class, 'index'])->name('causes');
+
+
+Route::get('/causes-id', function () {
+    return view('cases.caseById');
+})->name('causeId');
+
+
+// Route::get('/causes', function () {
+//     return view('cases.index');
+// })->name('causeAll');
 
 // require __DIR__.'/auth.php';

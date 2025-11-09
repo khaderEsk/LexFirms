@@ -3,7 +3,7 @@
 @section('content')
     <div>
         <div class="tab-buttons">
-            <h1>القضايا اليومية</h1>
+            <h1>القضايا</h1>
         </div>
         <div id="tab1" class="tab-content active">
             <div class="grid" id="">

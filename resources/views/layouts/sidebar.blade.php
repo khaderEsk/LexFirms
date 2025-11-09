@@ -7,9 +7,10 @@
     </div>
 
     <ul>
-        <li><a href=""class="active">القضايا</a></li>
+        <li><a href="{{ route('causes') }}">القضايا</a></li>
+        <li><a href="{{ route('causeDay') }}"class="active">القضايا اليومية</a></li>
         <li><a href="#">الموكلون</a></li>
-        <li><a href="#">الجلسات</a></li>
+        <li><a href="{{ route('causeDay') }}">الجلسات اليومية</a></li>
         <li><a href="#">التقارير</a></li>
         <li><a href="#">الإعدادات</a></li>
     </ul>
