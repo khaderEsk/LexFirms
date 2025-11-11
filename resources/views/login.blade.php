@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تسجيل الدخول - LEX Law Firm</title>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- الخطوط -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Tajawal:wght@400;500&display=swap"
         rel="stylesheet">
@@ -26,26 +27,19 @@
         <h2>تسجيل الدخول</h2>
 
         <!-- رسائل الخطأ -->
-        @if ($errors->any())
-            <div class="alert alert-error">
-                <i class="fas fa-exclamation-circle"></i>
-                {{ $errors->first() }}
+
+
+        <form>
+            <div class="input-group">
+                يسسييس
+                @if ($errors->any())
+                    {{ $errors->first() }}
+                @endif
             </div>
-        @endif
-
-        @if (session('status'))
-            <div class="alert alert-success">
-                <i class="fas fa-check-circle"></i>
-                {{ session('status') }}
-            </div>
-        @endif
-
-        <form >
-
             <div class="input-group">
                 <label for="email">اسم المستخدم</label>
-                <input type="text" id="userName" name="userName"  required
-                    placeholder="أدخل اسم المستخدم الخاص بك " autofocus>
+                <input type="text" id="userName" name="userName" required placeholder="أدخل اسم المستخدم الخاص بك "
+                    autofocus>
                 {{-- <i class="fas fa-envelope input-icon user-icon"></i> --}}
             </div>
 
@@ -68,116 +62,54 @@
 
     <!-- ملفات JavaScript -->
     <script src="js/password-toggle.js"></script>
-    <script src="js/form-validation.js"></script>
-    <script src="js/animations.js"></script>
-
+    {{-- <script src="js/form-validation.js"></script> --}}
+    {{-- <script src="js/animations.js"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('.addOrder').click(function(e) {
+            $('#loginBtn').click(function(e) {
                 e.preventDefault();
-                let id = $(this).attr('productCartId');
+                let userName = $('#userName').val();
+                let password = $('#password').val();
+                if (password == '' || userName == '') {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Please enter userName and password',
+                        icon: 'error',
+                        confirmButtonText: 'Ok!'
+                    })
+                } else {
+                    console.log(userName, password);
+                    $.ajax({
+                        method: 'post',
+                        // url: '{{ route('login') }}',
+                        url: "/login",
+                        data: {
+                            userName: userName,
+                            password: password,
 
-                $.ajax({
-                    method: 'POST',
-                    url: "/add-favorite-cart",
-                    data: {
-                        id: id
-                    },
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            Swal.fire({
-                                title: 'Success!',
-                                text: response.message,
-                                icon: 'success',
-                                confirmButtonText: 'OK'
-                            }).then(() => {
-                                if (response.reload) {
-                                    window.location.reload();
-                                }
-                            });
-                        } else {
-                            Swal.fire({
-                                title: 'Error!',
-                                text: response.message,
-                                icon: 'error',
-                                confirmButtonText: 'OK'
-                            });
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(response) {
+                            if (response.data == 1) {
+                                window.location.href = '/causes-day'
+                            } else if (response.data == 2) {
+                                window.location.href = '/';
+                            } else if (response.data == 0) {
+                                Swal.fire({
+                                    title: 'Enter Correct Password OR userName',
+                                    text: response.message,
+                                    icon: 'error',
+                                    confirmButtonText: 'Ok!'
+                                })
+                            }
                         }
-                    },
-                    error: function(xhr) {
-                        Swal.fire({
-                            title: 'Error!',
-                            text: xhr.responseJSON.message || 'Something went wrong',
-                            icon: 'error',
-                            confirmButtonText: 'OK'
-                        });
-                    }
-                });
+                    })
+                }
             });
-
-            $('.deleteOrder').click(function(e) {
-                e.preventDefault();
-                let id = $(this).attr('productId');
-                console.log(id);
-
-                Swal.fire({
-                    title: 'warning!',
-                    text: 'Do want delete this order',
-                    icon: 'warning',
-                    confirmButtonText: 'yes!'
-                }).then(result => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            method: 'DELETE',
-                            // url: '{{ route('login') }}',
-                            url: "/favorite-delete/" + id,
-                            data: {
-                                id: id
-                            },
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            success: function(response) {
-                                console.log(response.data);
-
-                                if (response.data == 1) {
-                                    window.location.reload();
-                                }
-
-                            }
-                        })
-                    }
-                })
-            });
-
-
-            $('.emptyWishlist').click(function(e) {
-                Swal.fire({
-                    title: 'warning!',
-                    text: 'Do want empty Wishlist?',
-                    icon: 'warning',
-                    confirmButtonText: 'Yes !'
-                }).then(result => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            method: 'get',
-                            url: "/empty-wishlist",
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            success: function(response) {
-                                if (response.data == 1) {
-                                    window.location.reload();
-                                }
-                            }
-                        })
-                    }
-                })
-            });
-
         });
     </script>
 </body>

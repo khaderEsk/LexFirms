@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cause;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class CauseController extends Controller
 {
@@ -12,6 +14,11 @@ class CauseController extends Controller
      */
     public function index()
     {
+        User::create([
+            'userName' => 'test',
+            'email' => 'test@gmail.com',
+            'password' => Hash::make('12341234'),
+        ]);
         $causes = Cause::all();
         return view('cases.index', compact('causes'));
     }
