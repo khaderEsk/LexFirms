@@ -14,11 +14,6 @@ class CauseController extends Controller
      */
     public function index()
     {
-        User::create([
-            'userName' => 'test',
-            'email' => 'test@gmail.com',
-            'password' => Hash::make('12341234'),
-        ]);
         $causes = Cause::all();
         return view('cases.index', compact('causes'));
     }

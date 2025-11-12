@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
             //     return response()->json(['data' => 2]);
             // }
         } else {
-            return response()->json(['error' => 1]);
+            return response()->json(['data' => 0]);
         }
     }
 
@@ -42,11 +42,11 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
-
+        return  redirect('/login');
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }

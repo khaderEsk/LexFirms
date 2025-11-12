@@ -1,159 +1,167 @@
 @extends('layouts.app')
-@section('title', 'الصفحة الرئيسية')
-@section('content')
-    <div>
-        <div class="tab-buttons">
-            <h1>القضايا رقم (رقم التعريف)</h1>
-        </div>
-        <div id="tab1" class="tab-content active">
-            <div class="grid" id="">
-                <div class="card">
-                    <h3>القضية #1235</h3>
-                    <p><strong>رقم الأساس:</strong> 2025/02</p>
-                    <p><strong>الموكل:</strong> أحمد المطيري</p>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 40%; background-color: #ffc107;"></div>
-                    </div>
-                    <div class="status-text">نسبة التقدم: 40%</div>
-                </div>
 
-                <div class="card">
-                    <h3>القضية #1236</h3>
-                    <p><strong>رقم الأساس:</strong> 2025/03</p>
-                    <p><strong>الموكل:</strong> سارة الحربي</p>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 90%; background-color: #28a745;"></div>
-                    </div>
-                    <div class="status-text">نسبة التقدم: 90%</div>
-                </div>
+@section('title', 'تفاصيل القضية رقم ')
+
+@section('content')
+    <div class="case-details">
+
+        <div class="case-header">
+            <h2>القضية رقم:</h2>
+            <span class="status-badge">
+                status
+
+            </span>
+        </div>
+
+        <div class="case-info-grid">
+            <div class="info-box">
+                <h4>رقم الأساس</h4>
+                <p>1234</p>
+            </div>
+
+            <div class="info-box">
+                <h4>اسم الموكل</h4>
+                <p>موكل</p>
+            </div>
+
+            <div class="info-box">
+                <h4>المحامي المسؤول</h4>
+                <p>محامين</p>
+            </div>
+
+            <div class="info-box">
+                <h4>تاريخ التسجيل</h4>
+                <p>20/02/2025</p>
+            </div>
+
+            <div class="info-box">
+                <h4>المحكمة</h4>
+                <p>المحكمة</p>
+            </div>
+
+            <div class="info-box">
+                <h4>آخر تحديث</h4>
+                <p>15/02/2525</p>
             </div>
         </div>
+
+        <div class="case-progress">
+            <h4>نسبة التقدم</h4>
+            <div class="progress-bar">
+                <div class="progress" style="width: 30%;"></div>
+            </div>
+            <span>30%</span>
+        </div>
+
+        <div class="case-description">
+            <h4>تفاصيل القضية</h4>
+            <p>تفاصيل القضية </p>
+        </div>
+
     </div>
+
+    <style>
+        .case-details {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            color: #333;
+            direction: rtl;
+        }
+
+        .case-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .status-badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .status-badge.active {
+            background: #28a745;
+        }
+
+        .status-badge.closed {
+            background: #dc3545;
+        }
+
+        .status-badge.pending {
+            background: #ffc107;
+            color: #000;
+        }
+
+        .case-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .info-box {
+            background: #f9f9f9;
+            border-right: 3px solid #d4af37;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .info-box h4 {
+            color: #0f0f0f;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .case-progress {
+            margin: 25px 0;
+        }
+
+        .progress-bar {
+            background: #eaeaea;
+            border-radius: 20px;
+            height: 10px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37, #b88a25);
+            border-radius: 20px;
+        }
+
+        .case-description {
+            margin-top: 25px;
+        }
+
+        .case-description h4 {
+            color: #0f0f0f;
+            border-bottom: 2px solid #d4af37;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .case-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .info-box {
+                text-align: right;
+            }
+
+            .case-details {
+                padding: 15px;
+            }
+        }
+    </style>
 @endsection
-
-<style>
-    .tabs {
-        max-width: 1000px;
-        margin: auto;
-        background: #0e2b2664;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-    }
-
-    /* شريط التبويبات */
-    .tab-buttons {
-        display: flex;
-        background: #e9eef3;
-        border-bottom: 2px solid #ddd;
-    }
-
-    .tab-buttons button {
-        flex: 1;
-        padding: 15px;
-        border: none;
-        background: transparent;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .tab-buttons button.active {
-        background: #007bff;
-        color: white;
-    }
-
-    /* محتوى التبويبات */
-    .tab-content {
-        display: none;
-        padding: 20px;
-        animation: fadeIn 0.4s ease-in-out;
-    }
-
-    .tab-content.active {
-        display: block;
-    }
-
-    /* شبكة الكروت */
-    .grid {
-        display: grid;
-        gap: 20px;
-    }
-
-    @media (min-width: 992px) {
-        .grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
-    @media (min-width: 768px) and (max-width: 991px) {
-        .grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media (max-width: 767px) {
-        .grid {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    /* تصميم الكارت */
-    .card {
-        background: #f9fafb;
-        border-radius: 12px;
-        padding: 20px;
-        border: 1px solid #ddd;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        transition: 0.3s;
-    }
-
-    .card:hover {
-        background: #eef5ff;
-        transform: translateY(-3px);
-    }
-
-    .card h3 {
-        color: #007bff;
-        margin-bottom: 8px;
-        font-size: 18px;
-    }
-
-    .card p {
-        color: #333;
-        margin: 5px 0;
-        font-size: 15px;
-    }
-
-    /* شريط الحالة */
-    .progress {
-        background-color: #e4e8ed;
-        border-radius: 10px;
-        overflow: hidden;
-        height: 12px;
-        margin-top: 10px;
-    }
-
-    .progress-bar {
-        height: 100%;
-        background-color: #007bff;
-        transition: width 0.4s ease;
-    }
-
-    .status-text {
-        text-align: left;
-        font-size: 13px;
-        color: #444;
-        margin-top: 4px;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
-    }
-</style>

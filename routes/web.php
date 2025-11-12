@@ -18,19 +18,24 @@ Route::get('/', function () {
 
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
-
-Route::get('/causes-day', function () {
-    return view('cases.causeDay');
-})->name('causeDay');
+Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 
 
-Route::get('/causes', [CauseController::class, 'index'])->name('causes');
+Route::middleware('auth')->group(function () {
+
+    Route::get('/causes-day', function () {
+        return view('cases.causeDay');
+    })->name('causeDay');
 
 
-Route::get('/causes-id', function () {
-    return view('cases.caseById');
-})->name('causeId');
+
+    Route::get('/causes', [CauseController::class, 'index'])->name('causes');
 
 
+    Route::get('/causes-id', function () {
+        return view('cases.caseById');
+    })->name('causeId');
 
+    Route::get('/causes', [CauseController::class, 'index'])->name('causes');
+});

@@ -31,16 +31,9 @@
 
         <form>
             <div class="input-group">
-                يسسييس
-                @if ($errors->any())
-                    {{ $errors->first() }}
-                @endif
-            </div>
-            <div class="input-group">
                 <label for="email">اسم المستخدم</label>
                 <input type="text" id="userName" name="userName" required placeholder="أدخل اسم المستخدم الخاص بك "
                     autofocus>
-                {{-- <i class="fas fa-envelope input-icon user-icon"></i> --}}
             </div>
 
             <div class="input-group">
@@ -60,10 +53,7 @@
         </form>
     </div>
 
-    <!-- ملفات JavaScript -->
     <script src="js/password-toggle.js"></script>
-    {{-- <script src="js/form-validation.js"></script> --}}
-    {{-- <script src="js/animations.js"></script> --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <script>
@@ -80,10 +70,8 @@
                         confirmButtonText: 'Ok!'
                     })
                 } else {
-                    console.log(userName, password);
                     $.ajax({
                         method: 'post',
-                        // url: '{{ route('login') }}',
                         url: "/login",
                         data: {
                             userName: userName,
@@ -96,15 +84,8 @@
                         success: function(response) {
                             if (response.data == 1) {
                                 window.location.href = '/causes-day'
-                            } else if (response.data == 2) {
-                                window.location.href = '/';
                             } else if (response.data == 0) {
-                                Swal.fire({
-                                    title: 'Enter Correct Password OR userName',
-                                    text: response.message,
-                                    icon: 'error',
-                                    confirmButtonText: 'Ok!'
-                                })
+                                alert("كلمة السر او اسم المستخدم غير صحيح");
                             }
                         }
                     })
