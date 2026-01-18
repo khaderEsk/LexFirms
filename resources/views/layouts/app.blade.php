@@ -3,15 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'لوحة التحكم')</title>
-
+    <link rel="stylesheet" href="{{ asset('css/lawyer.css') }}">
     <style>
         body {
             margin: 0;
             font-family: "Tajawal", sans-serif;
-            background-color: #f5f6fa;
+            background-color: #f1f1f1de;
             overflow-x: hidden;
         }
 
@@ -59,6 +58,7 @@
             text-decoration: none;
             font-size: 15px;
             transition: 0.3s;
+            margin-bottom: 20px;
         }
 
         .sidebar li a:hover,
@@ -70,7 +70,7 @@
 
         /* Header */
         header {
-            background: white;
+            background-color: #f1f1f1de;
             color: #d4af37;
             display: flex;
             justify-content: space-between;
@@ -103,7 +103,7 @@
         main {
             flex: 1;
             padding: 20px;
-            background: #ffffffdd;
+            background-color: #f1f1f1de;
         }
 
         .content {
@@ -147,19 +147,12 @@
 <body>
 
     <div class="main-wrapper">
-        {{-- Sidebar --}}
         @include('layouts.sidebar')
-
         <div class="content-area">
-            {{-- Header --}}
             @include('layouts.header')
-
-            {{-- Main Content --}}
             <main>
                 @yield('content')
             </main>
-
-            {{-- Footer --}}
             @include('layouts.footer')
         </div>
     </div>
@@ -190,9 +183,8 @@
             });
         });
     </script>
-
-
     @stack('scripts')
+    @yield('script')
 </body>
 
 </html>

@@ -1,0 +1,332 @@
+/* حاوية البطاقات */
+.lawyers-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+
+    padding: 20px;
+
+    /* حتى لا يتجاوز المحتوى الشاشة */
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+/* بطاقة المحامي */
+.lawyer-card {
+    background: white;
+    width: 300px;
+    /* حجم ثابت مناسب لكل الشاشات */
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: 0.3s;
+    height: max-content;
+}
+
+.lawyer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* الصورة الدائرية */
+.avatar {
+    width: 70px;
+    height: 70px;
+    background: #0e2b26;
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: auto;
+}
+
+/* النصوص */
+.lawyer-card h3 {
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.specialty {
+    color: #4c65d4;
+    font-weight: bold;
+}
+
+.cases {
+    margin: 8px 0;
+    color: #666;
+}
+
+/* زر عرض القضايا */
+.lawyer-card a {
+    margin-top: 15px;
+    padding: 10px 20px;
+    width: 100%;
+    border: none;
+    background: #e8ebf3;
+    color: #333;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.lawyer-card a:hover {
+    background: #d3d7e2;
+}
+
+@media (max-width: 480px) {
+    .lawyer-card {
+        width: 100%;
+        /* البطاقة تمتلئ عرض الشاشة */
+        max-width: 320px;
+        /* ولكن لا تزيد عن هذا */
+        margin: 0 auto;
+    }
+
+    .lawyers-container {
+        padding: 10px;
+        gap: 15px;
+    }
+}
+
+/* الشاشات من 481 إلى 768 */
+@media (max-width: 768px) {
+    .lawyer-card {
+        width: 90%;
+        max-width: 350px;
+        margin: auto;
+    }
+}
+
+
+/* الحاوية العلوية */
+.top-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 30px;
+}
+
+/* زر إضافة محامي */
+.add-lawyer-btn {
+    background: #0e2b26d8;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.add-lawyer-btn:hover {
+    background: #0e2b26e8;
+    transform: translateY(-2px);
+}
+
+
+/* الحاوية الرئيسية */
+.add-lawyer-container {
+    background: #fff;
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 25px 30px;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* عنوان الصفحة */
+.page-title {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 24px;
+    color: #0e2b26;
+}
+
+/* نموذج الإدخال */
+.lawyer-form .form-group {
+    margin-bottom: 18px;
+}
+
+.lawyer-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.lawyer-form input,
+.lawyer-form select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.lawyer-form input {
+    width: 96%;
+}
+
+
+.lawyer-form select {
+    width: 100%;
+}
+
+
+
+.lawyer-form input:focus {
+    border-color: #0e2b26;
+    outline: none;
+    box-shadow: 0 0 5px rgba(32, 78, 207, 0.3);
+}
+
+/* زر الحفظ */
+.submit-btn {
+    width: 100%;
+    background: #0e2b26;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background: #0e2b26ea;
+}
+
+/* تصميم متجاوب للموبايل */
+@media (max-width: 480px) {
+    .add-lawyer-container {
+        margin: 10px;
+        padding: 20px;
+    }
+
+    .page-title {
+        font-size: 20px;
+    }
+}
+
+
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal {
+    background: #ffffff;
+    width: 65%;
+    border-radius: 14px;
+    padding: 20px;
+    animation: slideDown .3s ease;
+    font-weight: bold;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.close-btn {
+    cursor: pointer;
+    font-size: 18px;
+    color: #ef4444;
+}
+
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #374151;
+    width: 150px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 97%;
+    padding: 9px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 20px;
+}
+
+.form-group select {
+    width: 100%;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn.cancel {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 55px;
+    height: 17px;
+    top: -11px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.btnColor {
+    background-color: #0e2b26e8;
+    color: white
+}
+
+.btn.cancel {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.btn {
+    padding: 10px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}

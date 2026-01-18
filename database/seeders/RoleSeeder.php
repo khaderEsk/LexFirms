@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 class RoleSeeder extends Seeder
@@ -14,51 +15,50 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $superAdminRole = Role::create(['name' => 'superAdmin']); // Hande and fadi
-        $adminRole = Role::create(['name' => 'admin']); // walaa
-        $majorRole = Role::create(['name' => 'major']);
-        $accountantRole = Role::create(['name' => 'accountant']);
-        $lawyerRole = Role::create(['name' => 'lawyer']);
-        $permissions = [
-            'create-case',
-            'edit-case',
-            'view-case',
-            'create-lawyer',
-            'edit-lawyer',
-            'view-lawyer',
-            'block-lawyer',
-            'create-client',
-            'view-client'
-        ];
-        foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission]);
-        }
+        $superAdmin = Role::create(['name' => 'superAdmin']); //Fadi AND Hande
+        $admin = Role::create(['name' => 'admin']); // Walaa
+        $adminLawyer = Role::create(['name' => 'adminLawyer']); //Wd
+        $lawyer = Role::create(['name' => 'lawyer']); //Lawyers
+        $accounting = Role::create(['name' => 'accounting']); //Lawyers
+        User::insert([
+            'userName' => 'fadi',
+            'email' => 'fadi@gmail.com',
+            'password' => Hash::make('1234'),
+        ]);
+        User::insert([
+            'userName' => 'hande',
+            'email' => 'hande@gmail.com',
+            'password' => Hash::make('1234'),
+        ]);
+        User::insert([
+            'userName' => 'walaa',
+            'email' => 'walaa@gmail.com',
+            'password' => Hash::make('1234'),
+        ]);
+        User::insert([
+            'userName' => 'wid',
+            'email' => 'wid@gmail.com',
+            'password' => Hash::make('1234'),
+        ]);
+        User::insert([
+            'userName' => 'samar',
+            'email' => 'samar.accounting@gmail.com',
+            'password' => Hash::make('1234'),
+        ]);
 
-        $superAdminRole->givePermissionTo($permissions);
-        $adminRole->givePermissionTo([
-            'create-lawyer',
-            'edit-lawyer',
-            'view-lawyer',
-            'block-lawyer',
-            'view-case',
-            'view-client'
-        ]);
-        $majorRole->givePermissionTo([
-            'create-case',
-            'edit-case',
-            'view-case',
-            'view-lawyer',
-            'create-client',
-        ]);
-        $accountantRole->givePermissionTo([
-            'view-case',
-            'view-lawyer',
-        ]);
-        $lawyerRole->givePermissionTo([
-            'create-case',
-            'edit-case',
-            'view-client',
-            'view-lawyer',
-        ]);
+        $fadi = User::find(1);
+        $fadi->assignRole('superAdmin');
+
+        $hande = User::find(2);
+        $hande->assignRole('superAdmin');
+
+        $walaa = User::find(3);
+        $walaa->assignRole('admin');
+
+        $wid = User::find(4);
+        $wid->assignRole('adminLawyer');
+        
+        $samar = User::find(5);
+        $samar->assignRole('accounting');
     }
 }
